@@ -1,15 +1,18 @@
 // Define your routes
 const routes = {
-  "/vanilladev/": () => {
-    document.getElementById("content").innerHTML = "<h1>Home Page</h1>";
+  "/": () => {
+    document.getElementById("content").innerHTML = `
+    <h1>Home Page</h1>
+    <p>Welcome to our home page</p>
+    `;
   },
-  "/vanilladev/about": () => {
+  "/about": () => {
     document.getElementById("content").innerHTML = "<h1>About Us</h1>";
   },
-  "/vanilladev/services": () => {
+  "/services": () => {
     document.getElementById("content").innerHTML = "<h1>Services</h1>";
   },
-  "/vanilladev/contact": () => {
+  "/contact": () => {
     document.getElementById("content").innerHTML = "<h1>Contact Us</h1>";
   },
 };
