@@ -1,59 +1,43 @@
-// script.js
-import { homeComponent } from "./components/homeComponent.js";
-import { aboutComponent } from "./components/aboutComponent.js";
-import { servicesComponent } from "./components/servicesComponent.js";
-import { contactComponent } from "./components/contactComponent.js";
-
-// Define your routes and their corresponding components
+// Define your routes
 const routes = {
-  "/": homeComponent,
-  "/about": aboutComponent,
-  "/services": servicesComponent,
-  "/contact": contactComponent,
+  "/": () => {
+    document.getElementById("content").innerHTML = "<h1>Home Page</h1>";
+  },
+  "/about": () => {
+    document.getElementById("content").innerHTML = "<h1>About Us</h1>";
+  },
+  "/services": () => {
+    document.getElementById("content").innerHTML = "<h1>Services</h1>";
+  },
+  "/contact": () => {
+    document.getElementById("content").innerHTML = "<h1>Contact Us</h1>";
+  },
 };
 
-// Function to handle routing
-function router() {
+// Handle navigation
+function navigate(path) {
+  if (routes[path]) {
+    routes[path]();
+    window.history.pushState({}, "", path);
+  }
+}
+
+// Handle initial load and popstate (back/forward buttons)
+function handleRoute() {
   const path = window.location.pathname;
-  const component = routes[path] || notFoundComponent;
-  document.getElementById("app").innerHTML = component();
-}
-
-// Define a not found component
-function notFoundComponent() {
-  return `
-      <h1>Home</h1><p>Welcome to the home page!</p>
-      <button class="btn">Click me!</button>
-      `;
-}
-
-// Add click event listener for button with class name ".btn"
-document.addEventListener("click", (event) => {
-  if (event.target.classList.contains("btn")) {
-    alert("Button clicked!");
+  if (routes[path]) {
+    routes[path]();
   }
-});
+}
 
-// Listen for navigation events
-window.addEventListener("popstate", router);
+window.addEventListener("popstate", handleRoute);
+window.addEventListener("load", handleRoute);
 
-// Handle link clicks
+// Add links for navigation (example)
 document.addEventListener("click", (event) => {
-  if (
-    event.target.tagName === "A" &&
-    event.target.href.startsWith(window.location.origin)
-  ) {
+  if (event.target.tagName === "A") {
     event.preventDefault();
-    window.history.pushState({}, "", event.target.href);
-    router();
+    const path = event.target.getAttribute("href");
+    navigate(path);
   }
-});
-
-// Initial call to router to render the initial route
-router();
-
-// Add click event listener for button with class name ".btn"
-let btnClick = document.querySelector(".btn");
-btnClick.addEventListener("click", (event) => {
-  alert("Button clicked!");
 });
