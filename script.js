@@ -7,13 +7,22 @@ const routes = {
     `;
   },
   "/about": () => {
-    document.getElementById("content").innerHTML = "<h1>About Us</h1>";
+    document.getElementById("content").innerHTML = `
+    <h1>About Us</h1>
+    <p>Learn more about us</p>
+    `;
   },
   "/services": () => {
-    document.getElementById("content").innerHTML = "<h1>Services</h1>";
+    document.getElementById("content").innerHTML = `
+    <h1>Services</h1>
+    <p>Discover our services</p>
+    `;
   },
   "/contact": () => {
-    document.getElementById("content").innerHTML = "<h1>Contact Us</h1>";
+    document.getElementById("content").innerHTML = `
+    <h1>Contact Us</h1>
+    <p>Get in touch with us</p>
+    `;
   },
 };
 
