@@ -21,8 +21,18 @@ function router() {
 
 // Define a not found component
 function notFoundComponent() {
-  return `<h1>404</h1><p>Page not found</p>`;
+  return `
+      <h1>Home</h1><p>Welcome to the home page!</p>
+      <button class="btn">Click me!</button>
+      `;
 }
+
+// Add click event listener for button with class name ".btn"
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("btn")) {
+    alert("Button clicked!");
+  }
+});
 
 // Listen for navigation events
 window.addEventListener("popstate", router);
@@ -41,3 +51,9 @@ document.addEventListener("click", (event) => {
 
 // Initial call to router to render the initial route
 router();
+
+// Add click event listener for button with class name ".btn"
+let btnClick = document.querySelector(".btn");
+btnClick.addEventListener("click", (event) => {
+  alert("Button clicked!");
+});
