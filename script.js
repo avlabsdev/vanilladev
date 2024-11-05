@@ -4,7 +4,12 @@ const routes = {
     document.getElementById("content").innerHTML = `
     <h1>Home Page</h1>
     <p>Welcome to our home page</p>
+    <button class="btn">Learn More</button>
     `;
+
+    document.querySelector(".btn").addEventListener("click", () => {
+      alert("Button clicked");
+    });
   },
   "/about": () => {
     document.getElementById("content").innerHTML = `
